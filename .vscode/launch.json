@@ -1,0 +1,46 @@
+{
+    /* 
+     * Requires the Rust Language Server (rust-analyzer) and Cortex-Debug extensions
+     * https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer
+     * https://marketplace.visualstudio.com/items?itemName=marus25.cortex-debug
+     */
+    "version": "0.2.0",
+    "configurations": [
+        {
+            /* Configuration for the STM32F303 Discovery board */
+            "type": "cortex-debug",
+            "request": "launch",
+            "name": "Debug (OpenOCD)",
+            "servertype": "openocd",
+            "cwd": "${workspaceRoot}",
+            // "preLaunchTask": "flash firmware",
+            "runToEntryPoint": "main",
+            "executable": "target/thumbv7m-none-eabi/debug/demo",
+            "svdFile": "STM32F103.svd",
+            // "device": "STM32F103C8T6",
+            "configFiles": [
+                "openocd.cfg",
+            ],
+            "overrideLaunchCommands": [
+                "interpreter-exec console \"monitor reset halt\"",
+                //'target-download',
+                //'interpreter-exec console \"monitor reset halt\"',
+                "-enable-pretty-printing"
+            ],
+            "rttConfig": {
+                "enabled": true,
+                "address": "auto",
+                "clearSearch": false,
+                "polling_interval": 20,
+                "rtt_start_retry": 2000,
+                "decoders": [
+                    {
+                        "label": "RTT channel 0",
+                        "port": 0,
+                        "type": "console"
+                    }
+                ]
+            },
+        }
+    ]
+}
