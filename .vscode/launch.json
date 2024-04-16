@@ -15,7 +15,7 @@
             "cwd": "${workspaceRoot}",
             // "preLaunchTask": "flash firmware",
             "runToEntryPoint": "main",
-            "executable": "target/thumbv7m-none-eabi/debug/demo",
+            "executable": "target/thumbv7m-none-eabi/debug/{{project-name}}",
             "svdFile": "STM32F103.svd",
             // "device": "STM32F103C8T6",
             "configFiles": [

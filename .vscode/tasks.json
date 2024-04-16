@@ -38,7 +38,7 @@
         {
             "label": "flash firmware",
             "type": "shell",
-            "command": "openocd -f ./openocd.cfg -c \"program target/thumbv7m-none-eabi/debug/demo 0x08000000 preverify verify reset exit\" -c shutdown",
+            "command": "openocd -f ./openocd.cfg -c \"program target/thumbv7m-none-eabi/debug/{{project-name}} 0x08000000 preverify verify reset exit\" -c shutdown",
             "dependsOn": [
                 "Cargo Build (debug)" 
             ],
